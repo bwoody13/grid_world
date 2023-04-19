@@ -11,8 +11,8 @@ Adding an agent consists of adding it to anywhere in the script that there is a 
 (All from https://mushroomrl.readthedocs.io/en/latest/source/mushroom_rl.algorithms.value.html)
 ### Implemented in original script:
 QLearning, DoubleQLearning, WeightedQLearning, SpeedyQLearning, SARSA
-### Implemented thus far:
+### Added thus far:
 SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning (these weren't too much trouble to add)
-### Not yet implemented (don't necessarily need to get through all of these, depends on how much trouble they are to implement):
+### Not yet added (don't necessarily need to get through all of these, depends on how much trouble they are to implement):
 FQI, DoubleFQI, BoostedFQI, LSPI, DQN and its variants (seems like these may take more effort)
 
