@@ -7,7 +7,8 @@ from joblib import Parallel, delayed
 
 from mushroom_rl.algorithms.value import QLearning, DoubleQLearning,\
     WeightedQLearning, SpeedyQLearning, SARSA,\
-        SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning
+        SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning,\
+            FQI, DoubleFQI, BoostedFQI, LSPI # These guys need an approximator?
 from mushroom_rl.core import Core, Logger
 from mushroom_rl.environments import *
 from mushroom_rl.policy import EpsGreedy
