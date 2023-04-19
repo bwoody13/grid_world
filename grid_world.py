@@ -6,7 +6,8 @@ from matplotlib import pyplot as plt
 from joblib import Parallel, delayed
 
 from mushroom_rl.algorithms.value import QLearning, DoubleQLearning,\
-    WeightedQLearning, SpeedyQLearning, SARSA
+    WeightedQLearning, SpeedyQLearning, SARSA,\
+        SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning
 from mushroom_rl.core import Core, Logger
 from mushroom_rl.environments import *
 from mushroom_rl.policy import EpsGreedy
@@ -36,6 +37,15 @@ def experiment(algorithm_class, exp):
     # Agent
     learning_rate = ExponentialParameter(value=1, exp=exp, size=mdp.info.size)
     algorithm_params = dict(learning_rate=learning_rate)
+    
+    # ADD EXTRA ALGORITHM PARAMS IF NEEDED 
+    if algorithm_class in [SARSALambda, QLambda]:
+        algorithm_params['lambda_coeff'] = .5 # Unsure which is best
+    if algorithm_class in [RLearning, RQLearning]:
+        algorithm_params['beta'] = .5 # Unsure which is best. Also RQ requires either beta or delta, not sure which one is best to provide
+    if algorithm_class in [MaxminQLearning]:
+        algorithm_params['n_tables'] = 2 # Unsure which is best
+
     agent = algorithm_class(mdp.info, pi, **algorithm_params)
 
     # Algorithm
@@ -46,7 +56,7 @@ def experiment(algorithm_class, exp):
     core = Core(agent, mdp, callbacks)
 
     # Train
-    core.learn(n_steps=10, n_steps_per_fit=1, quiet=True)
+    core.learn(n_steps=10, n_steps_per_fit=1, quiet=True) #fewer steps for debugging
 
     _, _, reward, _, _, _ = parse_dataset(collect_dataset.get())
     max_Qs = collect_max_Q.get()
@@ -62,7 +72,8 @@ if __name__ == '__main__':
     logger.info('Experiment Algorithm: ' + QLearning.__name__)
 
     names = {1: '1', .8: '08', QLearning: 'Q', DoubleQLearning: 'DQ',
-             WeightedQLearning: 'WQ', SpeedyQLearning: 'SPQ', SARSA: 'SARSA'}
+             WeightedQLearning: 'WQ', SpeedyQLearning: 'SPQ', SARSA: 'SARSA',
+             SARSALambda: 'SARSAL', ExpectedSARSA: 'ESARSA', QLambda: 'QL', RLearning: 'RL', MaxminQLearning: 'MMQ', RQLearning: 'RQ'}
 
     for e in [1, .8]:
         logger.info(f'Exp: {e}')
@@ -70,7 +81,7 @@ if __name__ == '__main__':
         plt.suptitle(names[e])
         legend_labels = []
         for a in [QLearning, DoubleQLearning, WeightedQLearning,
-                  SpeedyQLearning, SARSA]:
+                  SpeedyQLearning, SARSA, SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning]:
             logger.info(f'Alg: {names[a]}')
             out = Parallel(n_jobs=-1)(
                 delayed(experiment)(a, e) for _ in range(n_experiment))
