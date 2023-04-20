@@ -15,4 +15,5 @@ QLearning, DoubleQLearning, WeightedQLearning, SpeedyQLearning, SARSA
 SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning (these weren't too much trouble to add)
 ### Not yet added (don't necessarily need to get through all of these, depends on how much trouble they are to implement):
 FQI, DoubleFQI, BoostedFQI, LSPI, DQN and its variants (seems like these may take more effort)
+FQI (and, presumably, most/all of these methods) doesn't have a Q-table, which it seems like the script is made to build and save. So the script would need some more reworking to get these running. But perhaps just comparing the ones that were already there and the ones we added is enough.
 

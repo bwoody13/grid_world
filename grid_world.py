@@ -15,6 +15,7 @@ from mushroom_rl.policy import EpsGreedy
 from mushroom_rl.utils.callbacks import CollectDataset, CollectMaxQ
 from mushroom_rl.utils.dataset import parse_dataset
 from mushroom_rl.utils.parameters import ExponentialParameter
+from sklearn.ensemble import ExtraTreesRegressor
 
 
 """
@@ -27,6 +28,8 @@ SARSA and many variants of Q-Learning are used.
 
 def experiment(algorithm_class, exp):
     np.random.seed()
+
+    TD_agents = [QLearning, DoubleQLearning, WeightedQLearning, SpeedyQLearning, SARSA, SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning]
 
     # MDP
     mdp = GridWorldVanHasselt()
@@ -47,17 +50,39 @@ def experiment(algorithm_class, exp):
     if algorithm_class in [MaxminQLearning]:
         algorithm_params['n_tables'] = 2 # Unsure which is best
 
-    agent = algorithm_class(mdp.info, pi, **algorithm_params)
+
+    if algorithm_class in [FQI]:
+        # reference: https://github.com/MushroomRL/mushroom-rl/blob/dev/examples/car_on_hill_fqi.py
+        approximator_params = dict(input_shape=mdp.info.observation_space.shape,
+                               n_actions=mdp.info.action_space.n,
+                               n_estimators=50,
+                               min_samples_split=5,
+                               min_samples_leaf=2)
+        approximator = ExtraTreesRegressor
+        algorithm_params = dict(approximator = approximator, n_iterations = 10, approximator_params = approximator_params)
+        
+
+
+    if algorithm_class in TD_agents:
+        agent = algorithm_class(mdp.info, pi, **algorithm_params)
+    elif algorithm_class in [FQI]:
+        agent = algorithm_class(mdp.info, pi, **algorithm_params)
 
     # Algorithm
-    start = mdp.convert_to_int(mdp._start, mdp._width)
-    collect_max_Q = CollectMaxQ(agent.Q, start)
-    collect_dataset = CollectDataset()
-    callbacks = [collect_dataset, collect_max_Q]
-    core = Core(agent, mdp, callbacks)
-
+    if algorithm_class in TD_agents:
+        start = mdp.convert_to_int(mdp._start, mdp._width)
+        collect_max_Q = CollectMaxQ(agent.Q, start)
+        collect_dataset = CollectDataset()
+        callbacks = [collect_dataset, collect_max_Q]
+        core = Core(agent, mdp, callbacks)
+    elif algorithm_class in [FQI]:
+        core = Core(agent, mdp)
     # Train
-    core.learn(n_steps=10, n_steps_per_fit=1, quiet=True) #fewer steps for debugging
+    if algorithm_class in TD_agents:
+        core.learn(n_steps=10, n_steps_per_fit=1, quiet=True) #fewer steps for debugging
+    elif algorithm_class in [FQI]:
+        core.learn(n_episodes=10, n_episodes_per_fit=10)
+    ## may need to call learn with different parameters for some agents
 
     _, _, reward, _, _, _ = parse_dataset(collect_dataset.get())
     max_Qs = collect_max_Q.get()
@@ -74,7 +99,7 @@ if __name__ == '__main__':
 
     names = {1: '1', .8: '08', QLearning: 'Q', DoubleQLearning: 'DQ',
              WeightedQLearning: 'WQ', SpeedyQLearning: 'SPQ', SARSA: 'SARSA',
-             SARSALambda: 'SARSAL', ExpectedSARSA: 'ESARSA', QLambda: 'QL', RLearning: 'RL', MaxminQLearning: 'MMQ', RQLearning: 'RQ'}
+             SARSALambda: 'SARSAL', ExpectedSARSA: 'ESARSA', QLambda: 'QL', RLearning: 'RL', MaxminQLearning: 'MMQ', RQLearning: 'RQ', FQI: 'FQI'}
 
     for e in [1, .8]:
         logger.info(f'Exp: {e}')
@@ -82,7 +107,7 @@ if __name__ == '__main__':
         plt.suptitle(names[e])
         legend_labels = []
         for a in [QLearning, DoubleQLearning, WeightedQLearning,
-                  SpeedyQLearning, SARSA, SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning]:
+                  SpeedyQLearning, SARSA, SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning,]: # could add FQI
             logger.info(f'Alg: {names[a]}')
             out = Parallel(n_jobs=-1)(
                 delayed(experiment)(a, e) for _ in range(n_experiment))
