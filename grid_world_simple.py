@@ -16,6 +16,7 @@ from mushroom_rl.utils.callbacks import CollectDataset, CollectMaxQ
 from mushroom_rl.utils.dataset import parse_dataset
 from mushroom_rl.utils.parameters import ExponentialParameter
 from sklearn.ensemble import ExtraTreesRegressor
+import time
 
 
 """
@@ -80,7 +81,7 @@ def experiment(algorithm_class, exp):
         
     # Train
     if algorithm_class in TD_agents:
-        core.learn(n_steps=100, n_steps_per_fit=1, quiet=True) #fewer steps for debugging
+        core.learn(n_steps=10, n_steps_per_fit=1, quiet=True) #fewer steps for debugging
     elif algorithm_class in [FQI]:
         core.learn(n_episodes=10, n_episodes_per_fit=10)
     ## may need to call learn with different parameters for some agents
@@ -102,13 +103,19 @@ if __name__ == '__main__':
              WeightedQLearning: 'WQ', SpeedyQLearning: 'SPQ', SARSA: 'SARSA',
              SARSALambda: 'SARSAL', ExpectedSARSA: 'ESARSA', QLambda: 'QL', RLearning: 'RL', MaxminQLearning: 'MMQ', RQLearning: 'RQ', FQI: 'FQI'}
 
-    for e in [1, .8]:
+    #open('nps_simple/times.txt', 'w').close()
+
+    for e in [.8]:
         logger.info(f'Exp: {e}')
         fig = plt.figure()
         plt.suptitle(names[e])
         legend_labels = []
+        ticbig = time.perf_counter()
         for a in [QLearning, DoubleQLearning, WeightedQLearning,
                   SpeedyQLearning, SARSA, SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning,]: # could add FQI
+            
+            tic = time.perf_counter()
+
             logger.info(f'Alg: {names[a]}')
             out = Parallel(n_jobs=-1)(
                 delayed(experiment)(a, e) for _ in range(n_experiment))
@@ -118,8 +125,15 @@ if __name__ == '__main__':
             r = np.convolve(np.mean(r, 0), np.ones(100) / 100., 'valid')
             max_Qs = np.mean(max_Qs, 0)
 
-            np.save('nps/' + names[a] + '_' + names[e] + '_r.npy', r)
-            np.save('nps/' + names[a] + '_' + names[e] + '_maxQ.npy', max_Qs)
+            toc = time.perf_counter()
+
+            file = open('nps_simple/times.txt', 'a')
+            file.write('Method ' + names[a] + ' took ' + str((toc-tic)/60) + ' minutes.')
+            file.write("\n")
+            file.close()
+
+            np.save('nps_simple/' + names[a] + '_' + names[e] + '_r.npy', r)
+            np.save('nps_simple/' + names[a] + '_' + names[e] + '_maxQ.npy', max_Qs)
 
             print("r")
             print(r)
@@ -135,4 +149,10 @@ if __name__ == '__main__':
             plt.title("Max Qs")
             legend_labels.append(names[a])
         plt.legend(legend_labels)
-        fig.savefig('test_' + names[e] + '.png')
+        fig.savefig('results_simple/test_' + names[e] + '.png')
+
+
+        tocbig = time.perf_counter()
+        file = open('results_simple/times.txt', 'a')
+        file.write('Overall: ' + str((tocbig-ticbig)/60) + ' minutes.')
+        file.close()
