@@ -45,11 +45,11 @@ def experiment(algorithm_class, exp):
     
     # ADD EXTRA ALGORITHM PARAMS IF NEEDED 
     if algorithm_class in [SARSALambda, QLambda]:
-        algorithm_params['lambda_coeff'] = .5 # Unsure which is best
+        algorithm_params['lambda_coeff'] = .5 # https://ieeexplore.ieee.org/abstract/document/8798608, https://proceedings.mlr.press/v32/sutton14.html
     if algorithm_class in [RLearning, RQLearning]:
-        algorithm_params['beta'] = .5 # Unsure which is best. Also RQ requires either beta or delta, not sure which one is best to provide
+        algorithm_params['beta'] = .01 # http://incompleteideas.net/book/ebook/node67.html/https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf
     if algorithm_class in [MaxminQLearning]:
-        algorithm_params['n_tables'] = 2 # Unsure which is best
+        algorithm_params['n_tables'] = 2 # We can tune n to balance over and under estimation! Would be something good to play with https://arxiv.org/pdf/2002.06487.pdf 
 
 
     if algorithm_class in [FQI]:
@@ -81,7 +81,7 @@ def experiment(algorithm_class, exp):
         
     # Train
     if algorithm_class in TD_agents:
-        core.learn(n_steps=10, n_steps_per_fit=1, quiet=True) #fewer steps for debugging
+        core.learn(n_steps=10000, n_steps_per_fit=1, quiet=True) #fewer steps for debugging
     elif algorithm_class in [FQI]:
         core.learn(n_episodes=10, n_episodes_per_fit=10)
     ## may need to call learn with different parameters for some agents
@@ -103,7 +103,9 @@ if __name__ == '__main__':
              WeightedQLearning: 'WQ', SpeedyQLearning: 'SPQ', SARSA: 'SARSA',
              SARSALambda: 'SARSAL', ExpectedSARSA: 'ESARSA', QLambda: 'QL', RLearning: 'RL', MaxminQLearning: 'MMQ', RQLearning: 'RQ', FQI: 'FQI'}
 
-    #open('nps_simple/times.txt', 'w').close()
+    file = open('nps_simple/times.txt', 'w')
+    file.write('')
+    file.close()
 
     for e in [.8]:
         logger.info(f'Exp: {e}')
@@ -127,7 +129,7 @@ if __name__ == '__main__':
 
             toc = time.perf_counter()
 
-            file = open('nps_simple/times.txt', 'a')
+            file = open('results_simple/times.txt', 'a')
             file.write('Method ' + names[a] + ' took ' + str((toc-tic)/60) + ' minutes.')
             file.write("\n")
             file.close()

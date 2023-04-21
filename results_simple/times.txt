@@ -1,0 +1,23 @@
+Overall: 0.9796968900016509 minutes.Method Q took 0.18252189333434216 minutes.
+Method DQ took 0.06042978000089837 minutes.
+Method WQ took 0.10726356833280686 minutes.
+Method SPQ took 0.05665129666643528 minutes.
+Method SARSA took 0.05877257833296123 minutes.
+Method SARSAL took 0.062010986666427924 minutes.
+Method ESARSA took 0.07432421833315554 minutes.
+Method QL took 0.06821447999876303 minutes.
+Method RL took 0.06295927333218666 minutes.
+Method MMQ took 0.08257694333248461 minutes.
+Method RQ took 0.06382493166602217 minutes.
+Overall: 0.8845105399998526 minutes.Method Q took 0.18296084000030532 minutes.
+Method DQ took 0.06665992833247097 minutes.
+Method WQ took 0.1065435049997177 minutes.
+Method SPQ took 0.1643648399990828 minutes.
+Method SARSA took 0.08195864500012248 minutes.
+Method SARSAL took 0.08717440333178578 minutes.
+Method ESARSA took 0.09898054999842619 minutes.
+Method QL took 0.08730618499879104 minutes.
+Method RL took 0.08264966999995522 minutes.
+Method MMQ took 0.11453502999890285 minutes.
+Method RQ took 0.08243614500000453 minutes.
+Overall: 1.1625855499994941 minutes.
