@@ -143,10 +143,10 @@ if __name__ == '__main__':
             print("Max Qs")
             print(max_Qs)
 
-            plt.subplot(2, 1, 1)
+            plt.subplot(1, 1)
             plt.plot(r)
             plt.title("r")
-            plt.subplot(2, 1, 2)
+            plt.subplot(1, 2)
             plt.plot(max_Qs)
             plt.title("Max Qs")
             legend_labels.append(names[a])
