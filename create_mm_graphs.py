@@ -15,11 +15,11 @@ folder = 'nps_mm/'
 
 plt.figure().set_figwidth(15)
 
+plt.axhline(y = 0.2, color = 'k', linestyle = 'dashed')
 for a in [1, 2, 3, 4, 6, 8, 10, 12]:
 
     r = np.load(folder + 'mm' + names[a] + '_r.npy')
     plt.plot(r)
-    plt.title("r")
     legend_labels.append(names_legend[a])
 plt.legend(legend_labels, bbox_to_anchor=(1.01, 1), loc="upper left")
 plt.xlabel('Number of Time Steps')
@@ -30,11 +30,12 @@ plt.savefig('results_mm/final_r.png', dpi=300)
 print("rs plotted")
 plt.clf()
 
+plt.axhline(y = 0.36, color = 'k', linestyle = 'dashed')
 for a in [1, 2, 3, 4, 6, 8, 10, 12]:
 
     max_Qs = np.load(folder + 'mm' + names[a] + '_maxQ.npy')
     plt.plot(max_Qs)
-    plt.title("Max Qs")
+
 plt.legend(legend_labels, bbox_to_anchor=(1.01, 1), loc="upper left")
 plt.xlabel('Number of Time Steps')
 plt.ylabel('Maximum Q Value from Starting Square')

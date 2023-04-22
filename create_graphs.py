@@ -22,32 +22,32 @@ folder = 'nps_simple/'
 
 plt.figure().set_figwidth(15)
 
+plt.axhline(y = 0.2, color = 'k', linestyle = 'dashed')
 for a in [QLearning, DoubleQLearning, WeightedQLearning,
                   SpeedyQLearning, SARSA, SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning,]:
 
     r = np.load(folder + names[a] + '_' + names[e] + '_r.npy')
     plt.plot(r)
-    plt.title("r")
     legend_labels.append(names_legend[a])
 plt.legend(legend_labels, bbox_to_anchor=(1.01, 1), loc="upper left")
 plt.xlabel('Number of Time Steps')
 plt.ylabel('Average Reward per Time Step')
-plt.title('Rewards')
+plt.title('Rewards per Time Step')
 plt.subplots_adjust(right=0.7)
 plt.savefig('results_simple/final_r' + names[e] + '.png', dpi=300)
 print("rs plotted")
 plt.clf()
 
+plt.axhline(y = 0.36, color = 'k', linestyle = 'dashed')
 for a in [QLearning, DoubleQLearning, WeightedQLearning,
                   SpeedyQLearning, SARSA, SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning,]:
 
     max_Qs = np.load(folder + names[a] + '_' + names[e] + '_maxQ.npy')
     plt.plot(max_Qs)
-    plt.title("Max Qs")
 plt.legend(legend_labels, bbox_to_anchor=(1.01, 1), loc="upper left")
 plt.xlabel('Number of Time Steps')
 plt.ylabel('Maximum Q Value from Starting Square')
-plt.title('Q Values')
+plt.title('Maximum Q Values over Steps')
 plt.subplots_adjust(right=0.7)
 plt.savefig('results_simple/final_q' + names[e] + '.png', dpi=300)
 print("qs plotted")

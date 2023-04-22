@@ -94,8 +94,8 @@ if __name__ == '__main__':
             r = np.convolve(np.mean(r, 0), np.ones(100) / 100., 'valid')
             max_Qs = np.mean(max_Qs, 0)
 
-            np.save('nps/' + names[a] + '_' + names[e] + '_r.npy', r)
-            np.save('nps/' + names[a] + '_' + names[e] + '_maxQ.npy', max_Qs)
+            np.save('nps_lamb/' + names[a] + '_' + names[e] + '_r.npy', r)
+            np.save('nps_lamb/' + names[a] + '_' + names[e] + '_maxQ.npy', max_Qs)
 
             print("r")
             print(r)
