@@ -15,7 +15,7 @@ from mushroom_rl.utils.callbacks import CollectDataset, CollectMaxQ
 from mushroom_rl.utils.dataset import parse_dataset
 from mushroom_rl.utils.parameters import ExponentialParameter
 from sklearn.ensemble import ExtraTreesRegressor
-
+import time
 
 """
 This script aims to replicate the experiments on the Grid World MDP as
@@ -28,7 +28,7 @@ SARSA and many variants of Q-Learning are used.
 def experiment(algorithm_class, exp, lambda_coeff=0.5, beta=0.5, n_tables=2):
     np.random.seed()
 
-    # TD_agents = [QLearning, DoubleQLearning, WeightedQLearning, SpeedyQLearning, SARSA, SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning]
+    TD_agents = [QLearning, DoubleQLearning, WeightedQLearning, SpeedyQLearning, SARSA, SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning]
 
     # MDP
     mdp = GridWorldVanHasselt()
@@ -59,9 +59,7 @@ def experiment(algorithm_class, exp, lambda_coeff=0.5, beta=0.5, n_tables=2):
     core = Core(agent, mdp, callbacks)
         
     # Train
-
-    core.learn(n_steps=100, n_steps_per_fit=1, quiet=True) #fewer steps for debugging
-
+    core.learn(n_steps=10000, n_steps_per_fit=1, quiet=True) #fewer steps for debugging
 
     _, _, reward, _, _, _ = parse_dataset(collect_dataset.get())
     max_Qs = collect_max_Q.get()
@@ -79,17 +77,17 @@ if __name__ == '__main__':
     names = {1: '1', .8: '08', QLearning: 'Q', DoubleQLearning: 'DQ',
              WeightedQLearning: 'WQ', SpeedyQLearning: 'SPQ', SARSA: 'SARSA',
              SARSALambda: 'SARSAL', ExpectedSARSA: 'ESARSA', QLambda: 'QL', RLearning: 'RL', MaxminQLearning: 'MMQ', RQLearning: 'RQ'}
-
-    for e in [1, .8]:
-        logger.info(f'Exp: {e}')
-        fig = plt.figure()
-        plt.suptitle(names[e])
-        legend_labels = []
-        for a in [QLearning, DoubleQLearning, WeightedQLearning,
-                  SpeedyQLearning, SARSA, SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning,]: # could add FQI
+    e = 0.8
+    logger.info(f'Exp: {e}')
+    fig = plt.figure()
+    plt.suptitle(names[e])
+    legend_labels = []
+    ticbig = time.perf_counter()
+    for a in [RLearning, RQLearning]:
+        for beta in [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]:
             logger.info(f'Alg: {names[a]}')
             out = Parallel(n_jobs=-1)(
-                delayed(experiment)(a, e) for _ in range(n_experiment))
+                delayed(experiment)(a, e, beta=beta) for _ in range(n_experiment))
             r = np.array([o[0] for o in out])
             max_Qs = np.array([o[1] for o in out])
 
@@ -113,4 +111,9 @@ if __name__ == '__main__':
             plt.title("Max Qs")
             legend_labels.append(names[a])
         plt.legend(legend_labels)
-        fig.savefig('test_' + names[e] + '.png')
+        fig.savefig('results_beta/test_beta.png')
+
+        tocbig = time.perf_counter()
+        file = open('results_beta/times.txt', 'a')
+        file.write('Overall: ' + str((tocbig - ticbig) / 60) + ' minutes.')
+        file.close()
