@@ -3,9 +3,9 @@ from matplotlib import pyplot as plt
 from joblib import Parallel, delayed
 
 
-names = {1: '1', 2: '2', 3: '3', 4: '4', 5: '5'}
+names = {1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 8: '8', 10: '10', 12: '12'}
 
-names_legend = {1: '1', 2: '2', 3: '3', 4: '4', 5: '5'}
+names_legend = {1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 8: '8', 10: '10', 12: '12'}
 
 
 legend_labels = []

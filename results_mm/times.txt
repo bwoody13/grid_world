@@ -1,6 +1,9 @@
-Method 1 took 4.70251939833203 minutes.
-Method 2 took 3.4239849133319997 minutes.
-Method 3 took 6.287484053334143 minutes.
-Method 4 took 6.2606904166673 minutes.
-Method 5 took 8.547130678332177 minutes.
-Overall: 29.2364454349988 minutes.
+Method 1 took 26.379761016667665 minutes.
+Method 2 took 23.19566985333416 minutes.
+Method 3 took 26.00520800499944 minutes.
+Method 4 took 28.63931105666755 minutes.
+Method 6 took 34.66322524666709 minutes.
+Method 8 took 39.33601288833306 minutes.
+Method 10 took 44.7723190616661 minutes.
+Method 12 took 50.21052824833314 minutes.
+Overall: 273.21868390000117 minutes.
