@@ -17,3 +17,9 @@ SARSALambda, ExpectedSARSA, QLambda, RLearning, MaxminQLearning, RQLearning (the
 FQI, DoubleFQI, BoostedFQI, LSPI, DQN and its variants (seems like these may take more effort).
 FQI (and, presumably, most/all of these methods) doesn't have a Q-table, which it seems like the script is made to build and save. So the script would need some more reworking to get these running. But perhaps just comparing the ones that were originally there and the ones already added is enough--just adding them wasn't much work, but the work could be in comparison/analysis.
 
+## How to use new files
+
+```python grid_world_simple.py``` to run script comparing all models, then ```python create_graphs``` to graph the results (into ```results_simple```)
+
+```python grid_world_mmq.py``` to run script comparing different n's for Maxmin Q learning, then ```python create_mm_graphs``` to graph the results (into ```results_mm```)
+
