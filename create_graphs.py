@@ -15,12 +15,13 @@ names_legend = {1: '1', .8: '08', QLearning: 'Q Learning', DoubleQLearning: 'Dou
              SARSALambda: 'SARSA Lambda', ExpectedSARSA: 'Expected SARSA', QLambda: 'Q Lambda', RLearning: 'R Learning', MaxminQLearning: 'Maxmin Q Learning', RQLearning: 'RQ Learning'}
 
 
-legend_labels = []
+legend_labels = ['Optimal']
 e = .8
 
 folder = 'nps_simple/'
 
 plt.figure().set_figwidth(15)
+
 
 plt.axhline(y = 0.2, color = 'k', linestyle = 'dashed')
 for a in [QLearning, DoubleQLearning, WeightedQLearning,

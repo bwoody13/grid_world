@@ -85,6 +85,7 @@ if __name__ == '__main__':
     ticbig = time.perf_counter()
     for a in [RLearning, RQLearning]:
         for beta in [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]:
+            tic = time.perf_counter()
             logger.info(f'Alg: {names[a]}')
             out = Parallel(n_jobs=-1)(
                 delayed(experiment)(a, e, beta=beta) for _ in range(n_experiment))
@@ -94,8 +95,14 @@ if __name__ == '__main__':
             r = np.convolve(np.mean(r, 0), np.ones(100) / 100., 'valid')
             max_Qs = np.mean(max_Qs, 0)
 
-            np.save('nps_beta/' + names[a] + '_' + names[e] + '_r.npy', r)
-            np.save('nps_beta/' + names[a] + '_' + names[e] + '_maxQ.npy', max_Qs)
+            toc = time.perf_counter()
+            file = open('results_beta/times.txt', 'a')
+            file.write(names[a] + ' with beta = ' + str(beta) + ' took ' + str((toc-tic)/60) + ' minutes.')
+            file.write("\n")
+            file.close()
+
+            np.save('nps_beta/' + names[a] + str(int(beta*10)) + '_' + names[e] + '_r.npy', r)
+            np.save('nps_beta/' + names[a] + str(int(beta*10)) + '_' + names[e] + '_maxQ.npy', max_Qs)
 
             print("r")
             print(r)

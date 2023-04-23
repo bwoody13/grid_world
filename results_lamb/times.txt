@@ -1,0 +1,23 @@
+SARSAL with lambda = 0 took 0.19201681166693257 minutes.
+SARSAL with lambda = 0.1 took 0.05365022833381469 minutes.
+SARSAL with lambda = 0.2 took 0.03923598999972455 minutes.
+SARSAL with lambda = 0.3 took 0.05152987833328856 minutes.
+SARSAL with lambda = 0.4 took 0.04823750166688114 minutes.
+SARSAL with lambda = 0.5 took 0.04530233333352953 minutes.
+SARSAL with lambda = 0.6 took 0.04549097833417667 minutes.
+SARSAL with lambda = 0.7 took 0.045959711666606985 minutes.
+SARSAL with lambda = 0.8 took 0.047935754999828835 minutes.
+SARSAL with lambda = 0.9 took 0.049773216666653755 minutes.
+SARSAL with lambda = 1 took 0.0476143149988881 minutes.
+Overall: 0.6729797333323707 minutes.QL with lambda = 0 took 0.04899552833327713 minutes.
+QL with lambda = 0.1 took 0.047392143332399425 minutes.
+QL with lambda = 0.2 took 0.04729520666684645 minutes.
+QL with lambda = 0.3 took 0.053001260000746696 minutes.
+QL with lambda = 0.4 took 0.048057725001126525 minutes.
+QL with lambda = 0.5 took 0.044450371667820336 minutes.
+QL with lambda = 0.6 took 0.048930631667220344 minutes.
+QL with lambda = 0.7 took 0.0463550566676228 minutes.
+QL with lambda = 0.8 took 0.05134193666550952 minutes.
+QL with lambda = 0.9 took 0.049491866666357964 minutes.
+QL with lambda = 1 took 0.04981005833251402 minutes.
+Overall: 1.2120898599988625 minutes.
