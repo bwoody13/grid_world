@@ -35,4 +35,26 @@ RQ with beta = 0.7 took 0.05282902666561616 minutes.
 RQ with beta = 0.8 took 0.054944443334049235 minutes.
 RQ with beta = 0.9 took 0.052258041667907186 minutes.
 RQ with beta = 1 took 0.04940404000032383 minutes.
-Overall: 1.2199320449998292 minutes.
+Overall: 1.2199320449998292 minutes.RL with beta = 0 took 20.977190885000162 minutes.
+RL with beta = 0.1 took 16.39403525000089 minutes.
+RL with beta = 0.2 took 16.43394436833332 minutes.
+RL with beta = 0.3 took 16.495352968332977 minutes.
+RL with beta = 0.4 took 16.42618597999875 minutes.
+RL with beta = 0.5 took 16.42028331333422 minutes.
+RL with beta = 0.6 took 16.42376690666618 minutes.
+RL with beta = 0.7 took 16.509270370000742 minutes.
+RL with beta = 0.8 took 16.375125239999033 minutes.
+RL with beta = 0.9 took 16.763167220000955 minutes.
+RL with beta = 1 took 16.380527371666783 minutes.
+Overall: 185.60552236333217 minutes.RQ with beta = 0 took 16.439158493332798 minutes.
+RQ with beta = 0.1 took 16.35663668333242 minutes.
+RQ with beta = 0.2 took 16.374406618331946 minutes.
+RQ with beta = 0.3 took 16.742088496665627 minutes.
+RQ with beta = 0.4 took 16.37969838666613 minutes.
+RQ with beta = 0.5 took 17.974762170001245 minutes.
+RQ with beta = 0.6 took 16.374213524999018 minutes.
+RQ with beta = 0.7 took 16.290391981667685 minutes.
+RQ with beta = 0.8 took 16.326886331666415 minutes.
+RQ with beta = 0.9 took 16.37022720166715 minutes.
+RQ with beta = 1 took 16.445067921666972 minutes.
+Overall: 367.6861828166662 minutes.
