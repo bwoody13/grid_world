@@ -59,7 +59,7 @@ def experiment(algorithm_class, exp, lambda_coeff=0.5, beta=0.5, n_tables=2):
     core = Core(agent, mdp, callbacks)
         
     # Train
-    core.learn(n_steps=10, n_steps_per_fit=1, quiet=True) #fewer steps for debugging
+    core.learn(n_steps=10000, n_steps_per_fit=1, quiet=True) #fewer steps for debugging
 
     _, _, reward, _, _, _ = parse_dataset(collect_dataset.get())
     max_Qs = collect_max_Q.get()
