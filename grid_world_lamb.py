@@ -117,33 +117,6 @@ if __name__ == '__main__':
             plt.plot(max_Qs)
             plt.title("Max Qs")
             legend_labels.append(names[a]+f"-{lambda_coef}")
-        # for a in [RLearning, RQLearning]:
-        #     for beta in [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]:
-        #         logger.info(f'Alg: {names[a]}')
-        #         out = Parallel(n_jobs=-1)(
-        #             delayed(experiment)(a, e, beta=beta) for _ in range(n_experiment))
-        #         r = np.array([o[0] for o in out])
-        #         max_Qs = np.array([o[1] for o in out])
-        #
-        #         r = np.convolve(np.mean(r, 0), np.ones(100) / 100., 'valid')
-        #         max_Qs = np.mean(max_Qs, 0)
-        #
-        #         np.save('nps/' + names[a] + '_' + names[e] + '_r.npy', r)
-        #         np.save('nps/' + names[a] + '_' + names[e] + '_maxQ.npy', max_Qs)
-        #
-        #         print("r")
-        #         print(r)
-        #
-        #         print("Max Qs")
-        #         print(max_Qs)
-        #
-        #         plt.subplot(2, 1, 1)
-        #         plt.plot(r)
-        #         plt.title("r")
-        #         plt.subplot(2, 1, 2)
-        #         plt.plot(max_Qs)
-        #         plt.title("Max Qs")
-        #         legend_labels.append(names[a])
         plt.legend(legend_labels)
         fig.savefig('results_lamb/test_lamb.png')
 

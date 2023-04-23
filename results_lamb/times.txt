@@ -20,4 +20,6 @@ QL with lambda = 0.7 took 0.0463550566676228 minutes.
 QL with lambda = 0.8 took 0.05134193666550952 minutes.
 QL with lambda = 0.9 took 0.049491866666357964 minutes.
 QL with lambda = 1 took 0.04981005833251402 minutes.
-Overall: 1.2120898599988625 minutes.
+Overall: 1.2120898599988625 minutes.SARSAL with lambda = 0 took 98.61020576999871 minutes.
+SARSAL with lambda = 0.1 took 135.2916374866676 minutes.
+SARSAL with lambda = 0.2 took 107.35860515166617 minutes.
