@@ -68,7 +68,7 @@ def experiment(algorithm_class, exp, lambda_coeff=0.5, beta=0.5, n_tables=2):
 
 
 if __name__ == '__main__':
-    n_experiment = 10000
+    n_experiment = 10
 
     logger = Logger(QLearning.__name__, results_dir=None)
     logger.strong_line()
