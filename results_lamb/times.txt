@@ -67,4 +67,5 @@ QL with lambda = 0.7 took 16.77579198166689 minutes.
 QL with lambda = 0.8 took 16.700273994998618 minutes.
 QL with lambda = 0.9 took 16.763917594998688 minutes.
 QL with lambda = 1 took 16.615883016667794 minutes.
-Overall: 368.59307527333345 minutes.
+Overall: 368.59307527333345 minutes.QL with lambda = 0.1 took 75.04064627500095 minutes.
+Overall: 75.05538021333437 minutes.

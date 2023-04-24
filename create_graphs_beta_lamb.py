@@ -93,7 +93,7 @@ folder = 'nps_lamb/'
 plt.figure().set_figwidth(15)
 
 plt.axhline(y = 0.2, color = 'k', linestyle = 'dashed')
-for a in [0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1]:
+for a in [.1, .2, .3, .4, .5, .6, .7, .8, .9]:
     r = np.load(folder + 'QL' + strings[a] + '_08_r.npy')
     plt.plot(r)
     legend_labels.append(names[a])
@@ -107,7 +107,7 @@ print("rs plotted")
 plt.clf()
 
 plt.axhline(y = 0.36, color = 'k', linestyle = 'dashed')
-for a in [0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1]:
+for a in [.1, .2, .3, .4, .5, .6, .7, .8, .9]:
 
     max_Qs = np.load(folder + 'QL' + strings[a] + '_08_maxQ.npy')
     plt.plot(max_Qs)
