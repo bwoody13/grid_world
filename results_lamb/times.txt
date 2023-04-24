@@ -45,4 +45,26 @@ QL with lambda = 0.7 took 0.05306693000020459 minutes.
 QL with lambda = 0.8 took 0.054885063332039866 minutes.
 QL with lambda = 0.9 took 0.0560191133331197 minutes.
 QL with lambda = 1 took 0.053713286666121955 minutes.
-Overall: 1.46767004999953 minutes.
+Overall: 1.46767004999953 minutes.SARSAL with lambda = 0 took 18.975866908333654 minutes.
+SARSAL with lambda = 0.1 took 16.833268651666973 minutes.
+SARSAL with lambda = 0.2 took 16.757617868333668 minutes.
+SARSAL with lambda = 0.3 took 16.76050519166553 minutes.
+SARSAL with lambda = 0.4 took 16.577776901666464 minutes.
+SARSAL with lambda = 0.5 took 16.40949491833259 minutes.
+SARSAL with lambda = 0.6 took 16.315416585000154 minutes.
+SARSAL with lambda = 0.7 took 16.286214458333173 minutes.
+SARSAL with lambda = 0.8 took 16.19738375333254 minutes.
+SARSAL with lambda = 0.9 took 16.1557060533339 minutes.
+SARSAL with lambda = 1 took 16.175939813333873 minutes.
+Overall: 183.45334520666705 minutes.QL with lambda = 0 took 16.696649035000398 minutes.
+QL with lambda = 0.1 took 16.695146458332115 minutes.
+QL with lambda = 0.2 took 16.70757165499963 minutes.
+QL with lambda = 0.3 took 17.433488614998836 minutes.
+QL with lambda = 0.4 took 17.075829311665924 minutes.
+QL with lambda = 0.5 took 16.62418599333226 minutes.
+QL with lambda = 0.6 took 17.044591566666107 minutes.
+QL with lambda = 0.7 took 16.77579198166689 minutes.
+QL with lambda = 0.8 took 16.700273994998618 minutes.
+QL with lambda = 0.9 took 16.763917594998688 minutes.
+QL with lambda = 1 took 16.615883016667794 minutes.
+Overall: 368.59307527333345 minutes.
