@@ -1,6 +1,8 @@
 # Grid World
 Trying various RL algorithms on grid_wrold
 
+To read final report open the "Research_Project-Report.pdf" file
+
 Expanding on https://github.com/MushroomRL/mushroom-rl/blob/dev/examples/grid_world_td.py, which replicates the experiments on the Grid World MDP as presented in: "Double Q-Learning", Hasselt H. V.. 2010.
 
 To run the original script, run ```python grid_world.py```. This trains each agent on grid world, saves the models in ```\nps```, and produces a few graphical results. 
